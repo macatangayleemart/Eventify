@@ -43,8 +43,17 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 
+
+$router->match('/organizer', 'Organizer::dashboard', ['POST', 'GET']);
+$router->match('/organizer/create', 'Organizer::create', ['POST', 'GET']);
+$router->match('/organizer/update/{event_id}', 'Organizer::update', ['POST', 'GET']);
+$router->match('/organizer/delete/{event_id}', 'Organizer::delete', ['POST', 'GET']);
+
+
+$router->get('/user/home', 'User::home');
+$router->get('/user/about', 'User::about');
+
 $router->get('/', 'Auth');
-$router->get('/home', 'Home');
 $router->group('/auth', function() use ($router){
     $router->match('/register', 'Auth::register', ['POST', 'GET']);
     $router->match('/login', 'Auth::login', ['POST', 'GET']);
